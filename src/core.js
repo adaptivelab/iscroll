@@ -23,7 +23,8 @@ function IScroll (el, options) {
 
 		HWCompositing: true,
 		useTransition: true,
-		useTransform: true
+		useTransform: true,
+		scrollTarget: false
 	};
 
 	for ( var i in options ) {

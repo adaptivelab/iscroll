@@ -1,4 +1,4 @@
-/*! iScroll v5.1.3 ~ (c) 2008-2014 Matteo Spinelli ~ http://cubiq.org/license */
+/*! iScroll v5.1.3 ~ (c) 2008-2015 Matteo Spinelli ~ http://cubiq.org/license */
 (function (window, document, Math) {
 var rAF = window.requestAnimationFrame	||
 	window.webkitRequestAnimationFrame	||
@@ -276,7 +276,8 @@ function IScroll (el, options) {
 
 		HWCompositing: true,
 		useTransition: true,
-		useTransform: true
+		useTransform: true,
+		scrollTarget: false
 	};
 
 	for ( var i in options ) {
@@ -1523,18 +1524,19 @@ IScroll.prototype = {
 
 
 	handleEvent: function (e) {
+		var target = this.options.scrollTarget ? this.options.scrollTarget : this;
 		switch ( e.type ) {
 			case 'touchstart':
 			case 'pointerdown':
 			case 'MSPointerDown':
 			case 'mousedown':
-				this._start(e);
+				target._start(e);
 				break;
 			case 'touchmove':
 			case 'pointermove':
 			case 'MSPointerMove':
 			case 'mousemove':
-				this._move(e);
+				target._move(e);
 				break;
 			case 'touchend':
 			case 'pointerup':
@@ -1544,25 +1546,25 @@ IScroll.prototype = {
 			case 'pointercancel':
 			case 'MSPointerCancel':
 			case 'mousecancel':
-				this._end(e);
+				target._end(e);
 				break;
 			case 'orientationchange':
 			case 'resize':
-				this._resize();
+				target._resize();
 				break;
 			case 'transitionend':
 			case 'webkitTransitionEnd':
 			case 'oTransitionEnd':
 			case 'MSTransitionEnd':
-				this._transitionEnd(e);
+				target._transitionEnd(e);
 				break;
 			case 'wheel':
 			case 'DOMMouseScroll':
 			case 'mousewheel':
-				this._wheel(e);
+				target._wheel(e);
 				break;
 			case 'keydown':
-				this._key(e);
+				target._key(e);
 				break;
 			case 'click':
 				if ( !e._constructed ) {

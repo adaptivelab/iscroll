@@ -4,6 +4,14 @@
 
 ##  Version 5.1.1 - 2014.01.10
 
+### New features
+
+* option to use another IScroll instance as a scroll target
+
+---
+
+##  Version 5.1.1 - 2014.01.10
+
 ### Fixes
 * Infinite scroll now switch from `transform` to `top/left` based on `useTransform` option.
 * [#555](https://github.com/cubiq/iscroll/issues/555) removed unused variable
